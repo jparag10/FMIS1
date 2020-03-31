@@ -1,0 +1,66 @@
+﻿@model FMIS.Models.DieticianDataEntry
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>Register Form</title>
+</head>
+<body>
+    @if (ViewBag.email != null)
+    {
+        <h2> Hello, @ViewBag.email </h2>
+    }
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" value="Logout" class="btn btn-success pull-right " onclick="location.href='@Url.Action("Logout", "Home")'" />
+        </div>
+    </div>
+    <center>
+        <div class="panel panel-success" style="width:40%">
+            <div class="panel-heading text-center"> <h4> Dietician Data Entry</h4> </div>
+            <div class="panel-body">
+                @using (Html.BeginForm())
+                {
+                    <div class="form-group">
+                        <label>Name :</label> @ViewBag.Name
+                            @*@Html.LabelFor(m => m.Dietician.Name)*@
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <label>Experience :</label>  @ViewBag.Experience
+                        @*@Html.LabelFor(m => m.Dietician.Experience)*@
+                        <br />
+                    </div>
+                    @ViewBag.AlreadyExist
+
+                    <div class="form-group">
+                        <h3> Disease : </h3>
+                        @Html.EnumDropDownListFor(
+                            x => x.Disease,"Select Type",new { @class = "form-control" })
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <label>What To Eat : </label>
+                        @Html.TextAreaFor(m => m.WhatToEat, new { @class = "form-control" })
+                        <br />
+                    </div>
+                    <div class="form-group">
+                        <label>What To Avoid : </label>
+                        @Html.TextAreaFor(m => m.NotToEat, new { @class = "form-control" })
+                        <br />
+                    </div>
+
+                    <button name="Add" class="btn btn-success" type="submit" value="Add" onsubmit="submitForm()">Add</button>
+                    <button name="Search" class="btn btn-success" type="submit" value="Search" onsubmit="submitForm()">Search</button>
+                    <button name="Update" class="btn btn-success" type="submit" value="Update" onsubmit="submitForm()">Update</button>
+                    <button name="Delete" class="btn btn-success" type="submit" value="Delete" onsubmit="submitForm()">Delete</button>
+                }
+            </div>
+        </div>
+    </center>
+
+</body>
+</html>
+

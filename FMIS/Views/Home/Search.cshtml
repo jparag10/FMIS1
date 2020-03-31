@@ -1,0 +1,12 @@
+﻿
+
+@if (ViewBag.username != null)
+{
+    <h2> Hello, @ViewBag.username </h2>
+}
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="button" value="Logout" class="btn btn-success pull-right " onclick="location.href='@Url.Action("Logout", "Home")'" />
+    </div>
+</div>
