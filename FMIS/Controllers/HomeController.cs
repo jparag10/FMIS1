@@ -228,7 +228,7 @@ namespace FMIS.Controllers
                         var alreadyExist = db.DieticianDataEntries.SingleOrDefault(x => x.Disease == dde.Disease);
                         if (alreadyExist == null)
                         {
-                              = dieticianid;
+                            dde.dieticianid = dieticianid;
                             db.DieticianDataEntries.Add(dde);
                             db.SaveChanges();
                             return View();
@@ -237,6 +237,7 @@ namespace FMIS.Controllers
                         {
                             ViewBag.AlreadyExist = "Record with same Disease Already Exist. Try Search & Update.";
                             return View();
+                                
                         }
                     }
                     else
@@ -247,8 +248,21 @@ namespace FMIS.Controllers
                 }
                 else if (Search == "Search")
                 {
+                    //var alreadyExist = db.DieticianDataEntries.SingleOrDefault(x => x.ddeID == dde.ddeID && x.dieticianid==dde.dieticianid);
 
+                    //if (ModelState.IsValid)
+                    //{
+                    //    if (alreadyExist != null)
+                    //    {
+                            
+                    //        ViewBag.wte = alreadyExist.WhatToEat;
+                    //        ViewBag.nte = alreadyExist.NotToEat;
+                        
+                            
+                    //    }
+                    //    return View();
 
+                    //}
                 }
                 else if (Update == "Update")
                 {
@@ -267,11 +281,12 @@ namespace FMIS.Controllers
                             //db.Database.SqlQuery("Update DieticianDataEntries set  NotToEat=@notte", new SqlParameter("@notte", dde.NotToEat)).FirstOrDefault();
                             DieticianDataEntry ddentry = (from c in db.DieticianDataEntries
                                                           where c.Disease == dde.Disease
+                                                          && c.dieticianid==dde.dieticianid
                                                           select c).FirstOrDefault();
                             ddentry.Disease = dde.Disease;
                             ddentry.WhatToEat = dde.WhatToEat;
                             ddentry.NotToEat = dde.NotToEat;
-                            ddentry.Dietician.did = dieticianid;
+                            ddentry.dieticianid = dieticianid;
                             db.SaveChanges();
                             return View();
                         }
@@ -299,7 +314,7 @@ namespace FMIS.Controllers
             // return View();
         
 
-
+        
 
 
 

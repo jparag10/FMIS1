@@ -1,4 +1,7 @@
 ﻿@model FMIS.Models.DieticianDataEntry
+    @{ 
+        Layout = null;
+    }
 
 <!DOCTYPE html>
 <html>
@@ -43,13 +46,16 @@
                     </div>
                     <div class="form-group">
                         <label>What To Eat : </label>
-                        @Html.TextAreaFor(m => m.WhatToEat, new { @class = "form-control" })
+                        @Html.TextAreaFor(m => m.WhatToEat,new { @class = "form-control" } )
+                        
                         <br />
                     </div>
                     <div class="form-group">
                         <label>What To Avoid : </label>
                         @Html.TextAreaFor(m => m.NotToEat, new { @class = "form-control" })
                         <br />
+                        
+                        
                     </div>
 
                     <button name="Add" class="btn btn-success" type="submit" value="Add" onsubmit="submitForm()">Add</button>

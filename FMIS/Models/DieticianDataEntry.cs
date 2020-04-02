@@ -14,6 +14,7 @@ namespace FMIS.Models
         public Diseases Disease { get; set; }
         public string WhatToEat { get; set; }
         public string NotToEat { get; set; }
+        public int? dieticianid { get; set; }
     }
     public enum Diseases
     {
