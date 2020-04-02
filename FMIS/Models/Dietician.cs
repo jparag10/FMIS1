@@ -8,6 +8,7 @@ namespace FMIS.Models
 {
     public class Dietician
     {
+        
         [Key]
         public int did { get; set; }
         [Required(ErrorMessage = "Please enter your name")]

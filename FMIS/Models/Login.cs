@@ -14,16 +14,15 @@ namespace FMIS.Models
         [Index(IsUnique = true)]
         [Column(TypeName = "Varchar")]
         [StringLength(40)]
-        [Required(ErrorMessage = "Please enter your email address")]
+        [Required(ErrorMessage = "Please enter your Email Address")]
         [RegularExpression(@"^([0-9a-zA-Z]([\+\-_\.][0-9a-zA-Z]+)*)+@(([0-9a-zA-Z][-\w]*[0-9a-zA-Z]*\.)+[a-zA-Z0-9]{2,3})$", ErrorMessage = "Your email address is not in valid format. Ex. of correct email: paragjain@gmail.com")]
-
-       
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Please enter your password")]
+        [Required(ErrorMessage = "Please enter your Password")]
         [RegularExpression(@"(?=.*\d)(?=.*[A-Za-z]).{6,}", ErrorMessage = "Your password must be at least 6 characters long and contain at least 1 letter and 1 number")]
         public string Password { get; set; }
 
+        [Required(ErrorMessage = "Please enter your Type")]
         public string type { get; set; }
     }
 

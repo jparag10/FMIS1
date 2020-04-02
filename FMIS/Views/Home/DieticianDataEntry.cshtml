@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <title>Register Form</title>
+    <script>
+        $("#cleartext").click(function () {
+            $(this).closest('form').find("input[type=text],textarea").val("");
+        });
+        $("#addtext").click(function () {
+            $(this).closest('form').find("input[type=text],textarea").val(@ViewBag.whatte);
+        });
+    </script>
 </head>
 <body>
     @if (ViewBag.email != null)
@@ -21,11 +29,13 @@
         <div class="panel panel-success" style="width:40%">
             <div class="panel-heading text-center"> <h4> Dietician Data Entry</h4> </div>
             <div class="panel-body">
+                @ViewBag.Success
                 @using (Html.BeginForm())
                 {
+                    @*@Html.HiddenFor(model => model.ddeID)*@
                     <div class="form-group">
                         <label>Name :</label> @ViewBag.Name
-                            @*@Html.LabelFor(m => m.Dietician.Name)*@
+                        @*@Html.LabelFor(m => m.Dietician.Name)*@
                         <br />
                     </div>
                     <div class="form-group">
@@ -34,28 +44,41 @@
                         <br />
                     </div>
                     @ViewBag.AlreadyExist
-
+                    //@Html.TextBoxFor(x => x.Dietician.did, new { @class = "form-control" })
                     <div class="form-group">
                         <h3> Disease : </h3>
                         @Html.EnumDropDownListFor(
-                            x => x.Disease,"Select Type",new { @class = "form-control" })
+                            x => x.Disease, "Select Type", new { @class = "form-control" })
                         <br />
                     </div>
                     <div class="form-group">
                         <label>What To Eat : </label>
-                        @Html.TextAreaFor(m => m.WhatToEat, new { @class = "form-control" })
-                        <br />
+                        @Html.TextArea("WhatToEat", new { @class = "form-control" })
+
+                        @*@Html.TextAreaFor(m => m.WhatToEat,htmlAttributes:new { @Value = ViewData["whatte"]})*@
+                        @*@Html.TextAreaFor(m => m.WhatToEat, (string)(ViewBag.whatte), new { @class = "form-control" })*@
+                        @*@Html.TextAreaFor(m => m.WhatToEat, new { @value = (string)(ViewBag.whatte) })*@
+                        <br /> @*@Value =  (string)(ViewBag.whatte)*@
                     </div>
                     <div class="form-group">
                         <label>What To Avoid : </label>
-                        @Html.TextAreaFor(m => m.NotToEat, new { @class = "form-control" })
+                        @Html.TextArea("NotToEat", new { @class = "form-control" })
+
+                        @*@Html.TextAreaFor(m => m.NotToEat, new { @class = "form-control" })*@
                         <br />
                     </div>
 
-                    <button name="Add" class="btn btn-success" type="submit" value="Add" onsubmit="submitForm()">Add</button>
-                    <button name="Search" class="btn btn-success" type="submit" value="Search" onsubmit="submitForm()">Search</button>
-                    <button name="Update" class="btn btn-success" type="submit" value="Update" onsubmit="submitForm()">Update</button>
-                    <button name="Delete" class="btn btn-success" type="submit" value="Delete" onsubmit="submitForm()">Delete</button>
+                    <button name="Add" class="btn btn-success" type="submit" value="Add">Add</button>
+                    <button name="Search" class="btn btn-success" type="submit" value="Search">Search</button>
+                    <button name="Update" class="btn btn-success" type="submit" value="Update">Update</button>
+                    <button name="Delete" class="btn btn-success" type="submit" value="Delete">Delete</button>
+                    <button name="Reset" class="btn btn-success" type="reset" value="Reset">Reset</button>
+                    <br /> <br />
+                    @*@Html.TextArea("what to eat", (string)(ViewBag.whatte), new { @class = "form-control" })*@
+                    
+                    
+                    @ViewBag.whatte <br />
+                    @ViewBag.notte
                 }
             </div>
         </div>

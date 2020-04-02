@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -195,10 +196,16 @@ namespace FMIS.Controllers
             {
                 ViewBag.email = Session["email"];
                 string email = Session["email"].ToString();
+
+
                 string name = db.Database.SqlQuery<string>("Select name from Dieticians where email=@email", new SqlParameter("@email", email)).FirstOrDefault();
                 ViewBag.Name = name;
                 int experience = db.Database.SqlQuery<int>("Select experience from Dieticians where email=@email", new SqlParameter("@email", email)).FirstOrDefault();
                 ViewBag.Experience = experience;
+
+
+
+
                 //var dieticiandata = dde.Dietician.(x => x.Email == email);
                 // if (dieticiandata != null)
                 // {
@@ -221,16 +228,26 @@ namespace FMIS.Controllers
             {
                 //var dieticianLoggedIn = db.Dieticians.SingleOrDefault(x => x.Email == email);
 
+                
+
+
                 if (Add == "Add")
                 {
                     if (ModelState.IsValid)
                     {
-                        var alreadyExist = db.DieticianDataEntries.SingleOrDefault(x => x.Disease == dde.Disease);
+                        var alreadyExist = db.DieticianDataEntries.SingleOrDefault(x => x.Disease == dde.Disease && x.dieticianid == dieticianid);
                         if (alreadyExist == null)
                         {
-                              = dieticianid;
+                            //dde.Dieticians.Add(diet);
+                            dde.dieticianid = dieticianid;
                             db.DieticianDataEntries.Add(dde);
                             db.SaveChanges();
+                            //if (dde.ddeID > 0)
+                            //{
+                            //    ViewBag.Success = "Inserted";
+
+                            //}
+                            //ModelState.Clear();
                             return View();
                         }
                         else
@@ -247,32 +264,20 @@ namespace FMIS.Controllers
                 }
                 else if (Search == "Search")
                 {
-
-
-                }
-                else if (Update == "Update")
-                {
                     if (ModelState.IsValid)
                     {
-                        var alreadyExist = db.DieticianDataEntries.SingleOrDefault(x => x.Disease == dde.Disease);
-                        if (alreadyExist == null)
+                        var alreadyExist = db.DieticianDataEntries.SingleOrDefault(x => x.Disease == dde.Disease && x.dieticianid == dieticianid);
+                        if (alreadyExist != null)
                         {
-                            db.DieticianDataEntries.Add(dde);
-                            db.SaveChanges();
+                            ViewBag.whatte = "What TO Eat: " + alreadyExist.WhatToEat;
+                            //ViewData["whatte"] = dde.WhatToEat;
+                            ViewBag.notte = "What TO Avoid" +
+                                ": " + alreadyExist.NotToEat;
                             return View();
                         }
                         else
                         {
-                            //db.Database.SqlQuery("Update DieticianDataEntries set WhatToEat=@whatte ", new SqlParameter("@whatte",dde.WhatToEat)).FirstOrDefault();
-                            //db.Database.SqlQuery("Update DieticianDataEntries set  NotToEat=@notte", new SqlParameter("@notte", dde.NotToEat)).FirstOrDefault();
-                            DieticianDataEntry ddentry = (from c in db.DieticianDataEntries
-                                                          where c.Disease == dde.Disease
-                                                          select c).FirstOrDefault();
-                            ddentry.Disease = dde.Disease;
-                            ddentry.WhatToEat = dde.WhatToEat;
-                            ddentry.NotToEat = dde.NotToEat;
-                            ddentry.Dietician.did = dieticianid;
-                            db.SaveChanges();
+                            ViewBag.AlreadyExist = "No Record with Disease Exist . Try ADD.";
                             return View();
                         }
                     }
@@ -282,10 +287,57 @@ namespace FMIS.Controllers
                     }
 
                 }
+                else if (Update == "Update")
+                {
+                    if (ModelState.IsValid)
+                    {
+                        var alreadyExist = db.DieticianDataEntries.SingleOrDefault(x => x.Disease == dde.Disease && x.dieticianid == dieticianid);
+                        if (alreadyExist == null)
+                        {
+                            db.DieticianDataEntries.Add(dde);
+                            db.SaveChanges();
+                            return View();
+                        }
+                        else
+                        {
+                            //DieticianDataEntry ddupdate = (from c in db.DieticianDataEntries
+                            //                               where c.Disease == dde.Disease
+                            //                               && c.dieticianid == dde.dieticianid
+                            //                               select c).FirstOrDefault();
+
+                            //ddupdate.Disease = dde.Disease;
+                            //ddupdate.WhatToEat = dde.WhatToEat;
+                            //ddupdate.NotToEat = dde.NotToEat;
+                            //ddupdate.dieticianid = dieticianid;
+
+                            alreadyExist.Disease = dde.Disease;
+                            alreadyExist.WhatToEat = dde.WhatToEat;
+                            alreadyExist.NotToEat = dde.NotToEat;
+                            alreadyExist.dieticianid = dieticianid;
+                            db.SaveChanges();
+                                return View();
+                        }
+                    }
+                    else
+                    {
+                        return View();
+                    }
+                }
                 else if (Delete == "Delete")
                 {
-                    int result = db.Database.ExecuteSqlCommand("delete from DieticianDataEntries where Disease = ");
-
+                    if (ModelState.IsValid)
+                    {
+                        var dise = dde.Disease;
+                        //int result = db.Database.ExecuteSqlCommand("delete from DieticianDataEntries where Disease = ");
+                        int ddeid = db.Database.SqlQuery<int>("Select ddeID from DieticianDataEntries where Disease=@dise", new SqlParameter("@dise", dise)).FirstOrDefault();
+                        DieticianDataEntry dieticianDataEntry = db.DieticianDataEntries.Find(ddeid);
+                        db.DieticianDataEntries.Remove(dieticianDataEntry);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        return View();
+                    }
                 }
                 else
                 {
