@@ -5,3 +5,13 @@
 <h3>@ViewBag.Message</h3>
 
 <p>Use this area to provide additional information.</p>
+<div class="form-group">
+    <div style="color:red; font-size:medium">
+        @{ 
+            var name = "suyash";
+        }
+        @Html.ActionLink("DieticianProfile", "DieticianProfile", new { name= name})
+        
+        
+        
+    </div>

@@ -12,7 +12,7 @@
             AddColumn("dbo.Dieticians", "DieticianDataEntry_ddeID", c => c.Int());
             CreateIndex("dbo.Dieticians", "DieticianDataEntry_ddeID");
             AddForeignKey("dbo.Dieticians", "DieticianDataEntry_ddeID", "dbo.DieticianDataEntries", "ddeID");
-            DropColumn("dbo.DieticianDataEntries", "Dietician_did");
+            
         }
         
         public override void Down()

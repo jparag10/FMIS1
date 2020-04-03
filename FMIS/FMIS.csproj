@@ -127,37 +127,25 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DieticianDataEntryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserSearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003301336214_initialmodel.cs" />
-    <Compile Include="Migrations\202003301336214_initialmodel.designer.cs">
-      <DependentUpon>202003301336214_initialmodel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003301603217_secondmodel.cs" />
-    <Compile Include="Migrations\202003301603217_secondmodel.designer.cs">
-      <DependentUpon>202003301603217_secondmodel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202003311358389_dde_first.cs" />
     <Compile Include="Migrations\202003311358389_dde_first.designer.cs">
       <DependentUpon>202003311358389_dde_first.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003311615424_dde_second.cs" />
-    <Compile Include="Migrations\202003311615424_dde_second.designer.cs">
-      <DependentUpon>202003311615424_dde_second.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003311619328_dde_second1.cs" />
-    <Compile Include="Migrations\202003311619328_dde_second1.designer.cs">
-      <DependentUpon>202003311619328_dde_second1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004010720052_dde_third.cs" />
-    <Compile Include="Migrations\202004010720052_dde_third.designer.cs">
-      <DependentUpon>202004010720052_dde_third.cs</DependentUpon>
+    <Compile Include="Migrations\202004031115376_userpage.cs" />
+    <Compile Include="Migrations\202004031115376_userpage.designer.cs">
+      <DependentUpon>202004031115376_userpage.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dietician.cs" />
     <Compile Include="Models\DieticianDataEntry.cs" />
+    <Compile Include="Models\Disease.cs" />
+    <Compile Include="Models\DiseaseCheck.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Medicaldbcontext.cs" />
     <Compile Include="Models\User.cs" />
@@ -168,11 +156,15 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DieticianProfile.css" />
     <Content Include="Content\navbar.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\slider1.jpg" />
+    <Content Include="Images\slider2.jpg" />
+    <Content Include="Images\slider3.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -201,15 +193,18 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\DieticianDataEntry.cshtml" />
+    <Content Include="Views\DieticianDataEntry\DieticianDataEntry.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\User_Register.cshtml" />
     <Content Include="Views\Home\DieticianReg.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\UserSearch\DieticianProfile.cshtml" />
+    <Content Include="Views\UserSearch\DisplayToUser.cshtml" />
+    <Content Include="Views\UserSearch\DiseaseDiv.cshtml" />
+    <Content Include="Views\UserSearch\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -225,23 +220,11 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003301336214_initialmodel.resx">
-      <DependentUpon>202003301336214_initialmodel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003301603217_secondmodel.resx">
-      <DependentUpon>202003301603217_secondmodel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003311358389_dde_first.resx">
       <DependentUpon>202003311358389_dde_first.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003311615424_dde_second.resx">
-      <DependentUpon>202003311615424_dde_second.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003311619328_dde_second1.resx">
-      <DependentUpon>202003311619328_dde_second1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004010720052_dde_third.resx">
-      <DependentUpon>202004010720052_dde_third.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004031115376_userpage.resx">
+      <DependentUpon>202004031115376_userpage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,48 @@
+﻿@using System.Data
+@model DataSet
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<div id="test">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <style>
+        th {
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+        }
+    </style>
+    @foreach (DataRow row in Model.Tables[0].Rows)
+    {
+        <h5 style="padding-bottom:30px">Showing Results for @row["Disease"]</h5>
+        break;
+    }
+    @foreach (DataRow row in Model.Tables[0].Rows)
+    {
+
+
+        <table cellpadding="1" cellspacing="1" width="100%" class="text-center">
+            <col width="50%" />
+            <col width="50%" />
+            <tr>
+                <th class="table-active" colspan="2">Suggested by @row["Name"]</th>
+            </tr>
+            <tr>
+                <th class="bg-success">Do's</th>
+                <th class="bg-danger">Dont's</th>
+            </tr>
+
+            <tr>
+                <td class="table-success">@row["WhatToEat"]</td>
+                <td class="table-danger">@row["NotToEat"]</td>
+            </tr>
+
+        </table>
+        <br>
+    }
+</div>

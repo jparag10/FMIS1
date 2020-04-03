@@ -22,7 +22,7 @@ namespace FMIS.Models
         [RegularExpression(@"(?=.*\d)(?=.*[A-Za-z]).{6,}", ErrorMessage = "Your password must be at least 6 characters long and contain at least 1 letter and 1 number")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Please enter your Type")]
+        [Required]
         public string type { get; set; }
     }
 

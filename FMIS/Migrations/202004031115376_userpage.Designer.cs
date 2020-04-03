@@ -7,13 +7,13 @@ namespace FMIS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class dde_second1 : IMigrationMetadata
+    public sealed partial class userpage : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(dde_second1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(userpage));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003311619328_dde_second1"; }
+            get { return "202004031115376_userpage"; }
         }
         
         string IMigrationMetadata.Source

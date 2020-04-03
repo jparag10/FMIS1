@@ -7,10 +7,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using FMIS.Models;
+
+
 namespace FMIS.Controllers
 {
     public class HomeController : Controller
     {
+        
         Medicaldbcontext db = new Medicaldbcontext();
         public ActionResult Index()
         {
@@ -132,7 +135,7 @@ namespace FMIS.Controllers
                     {
                         ViewBag.message = "loggedin";
                         Session["email"] = login.Email;
-                        return RedirectToAction("Search", "Home", new { email = login.Email });
+                        return RedirectToAction("DisplayToUser", "UserSearch", new { email = login.Email });
                     }
                     else
                     {
@@ -147,7 +150,8 @@ namespace FMIS.Controllers
                     {
                         ViewBag.message = "loggedin";
                         Session["email"] = login.Email;
-                        return RedirectToAction("DieticianDataEntry", "Home", new { email = login.Email });
+                        //return RedirectToAction("DieticianProfile", "Home", new { email = login.Email });
+                        return RedirectToAction("DieticianDataEntry", "DieticianDataEntry", new { email = login.Email });
                     }
                     else
                     {
@@ -185,175 +189,6 @@ namespace FMIS.Controllers
                 return View();
             }
         }
-
-        public ActionResult DieticianDataEntry(DieticianDataEntry dde)
-        {
-            if (Session["email"] == null)
-            {
-                return RedirectToAction("Login", "Home");
-            }
-            else
-            {
-                ViewBag.email = Session["email"];
-                string email = Session["email"].ToString();
-
-
-                string name = db.Database.SqlQuery<string>("Select name from Dieticians where email=@email", new SqlParameter("@email", email)).FirstOrDefault();
-                ViewBag.Name = name;
-                int experience = db.Database.SqlQuery<int>("Select experience from Dieticians where email=@email", new SqlParameter("@email", email)).FirstOrDefault();
-                ViewBag.Experience = experience;
-
-
-
-
-                //var dieticiandata = dde.Dietician.(x => x.Email == email);
-                // if (dieticiandata != null)
-                // {
-                //     ViewBag.Name = dde.Dietician.Name;
-                //     ViewBag.Experience = dde.Dietician.Experience;
-                // }
-                return View();
-            }
-        }
-        [HttpPost]
-        public ActionResult DieticianDataEntry(DieticianDataEntry dde,string Add,string Search, string Update, string Delete)
-        {
-            string email = Session["email"].ToString();
-            int dieticianid = db.Database.SqlQuery<int>("Select did from Dieticians where email=@email", new SqlParameter("@email", email)).FirstOrDefault();
-            if (Session["email"] == null)
-            {
-                return RedirectToAction("Login", "Home");
-            }
-            else
-            {
-                //var dieticianLoggedIn = db.Dieticians.SingleOrDefault(x => x.Email == email);
-
-                
-
-
-                if (Add == "Add")
-                {
-                    if (ModelState.IsValid)
-                    {
-                        var alreadyExist = db.DieticianDataEntries.SingleOrDefault(x => x.Disease == dde.Disease && x.dieticianid == dieticianid);
-                        if (alreadyExist == null)
-                        {
-                            //dde.Dieticians.Add(diet);
-                            dde.dieticianid = dieticianid;
-                            db.DieticianDataEntries.Add(dde);
-                            db.SaveChanges();
-                            //if (dde.ddeID > 0)
-                            //{
-                            //    ViewBag.Success = "Inserted";
-
-                            //}
-                            //ModelState.Clear();
-                            return View();
-                        }
-                        else
-                        {
-                            ViewBag.AlreadyExist = "Record with same Disease Already Exist. Try Search & Update.";
-                            return View();
-                        }
-                    }
-                    else
-                    {
-                        return View();
-                    }
-
-                }
-                else if (Search == "Search")
-                {
-                    if (ModelState.IsValid)
-                    {
-                        var alreadyExist = db.DieticianDataEntries.SingleOrDefault(x => x.Disease == dde.Disease && x.dieticianid == dieticianid);
-                        if (alreadyExist != null)
-                        {
-                            ViewBag.whatte = "What TO Eat: " + alreadyExist.WhatToEat;
-                            //ViewData["whatte"] = dde.WhatToEat;
-                            ViewBag.notte = "What TO Avoid" +
-                                ": " + alreadyExist.NotToEat;
-                            return View();
-                        }
-                        else
-                        {
-                            ViewBag.AlreadyExist = "No Record with Disease Exist . Try ADD.";
-                            return View();
-                        }
-                    }
-                    else
-                    {
-                        return View();
-                    }
-
-                }
-                else if (Update == "Update")
-                {
-                    if (ModelState.IsValid)
-                    {
-                        var alreadyExist = db.DieticianDataEntries.SingleOrDefault(x => x.Disease == dde.Disease && x.dieticianid == dieticianid);
-                        if (alreadyExist == null)
-                        {
-                            db.DieticianDataEntries.Add(dde);
-                            db.SaveChanges();
-                            return View();
-                        }
-                        else
-                        {
-                            //DieticianDataEntry ddupdate = (from c in db.DieticianDataEntries
-                            //                               where c.Disease == dde.Disease
-                            //                               && c.dieticianid == dde.dieticianid
-                            //                               select c).FirstOrDefault();
-
-                            //ddupdate.Disease = dde.Disease;
-                            //ddupdate.WhatToEat = dde.WhatToEat;
-                            //ddupdate.NotToEat = dde.NotToEat;
-                            //ddupdate.dieticianid = dieticianid;
-
-                            alreadyExist.Disease = dde.Disease;
-                            alreadyExist.WhatToEat = dde.WhatToEat;
-                            alreadyExist.NotToEat = dde.NotToEat;
-                            alreadyExist.dieticianid = dieticianid;
-                            db.SaveChanges();
-                                return View();
-                        }
-                    }
-                    else
-                    {
-                        return View();
-                    }
-                }
-                else if (Delete == "Delete")
-                {
-                    if (ModelState.IsValid)
-                    {
-                        var dise = dde.Disease;
-                        //int result = db.Database.ExecuteSqlCommand("delete from DieticianDataEntries where Disease = ");
-                        int ddeid = db.Database.SqlQuery<int>("Select ddeID from DieticianDataEntries where Disease=@dise", new SqlParameter("@dise", dise)).FirstOrDefault();
-                        DieticianDataEntry dieticianDataEntry = db.DieticianDataEntries.Find(ddeid);
-                        db.DieticianDataEntries.Remove(dieticianDataEntry);
-                        db.SaveChanges();
-                    }
-                    else
-                    {
-                        return View();
-                    }
-                }
-                else
-                {
-                    return View();
-                }
-
-                return View();
-            }
-        }
-
-            // return View();
-        
-
-
-
-
 
     }
 }

@@ -1,0 +1,46 @@
+﻿@using System.Data;
+@model DataSet
+
+
+
+<h6 style="padding:10px">Please pick your disease..</h6>
+<div style="text-align:left; padding-left:30%;">
+
+    @foreach (DataRow row in Model.Tables[0].Rows)
+    {
+        <input type="radio" name="diseases" id="diseases" value="@row["Disease"]" /> @row["Disease"]
+        <br>
+    }
+</div>
+
+<input type="submit" style="margin-top:20px;" value="Submit" id="search" class="alert-success" />
+
+
+<script type="text/javascript">
+
+            $(document).ready(function () {
+                $('#search').click(function () {
+                    var radioValue = $("input[name='diseases']:checked").val();
+                    var data = radioValue;
+                    var f = {};
+                    f.url = '@Url.Action("Test","Home")',
+                    f.type = "POST",
+                        f.dataType = "html";
+                    f.data = { "value": data };
+                    f.async = false;
+                    f.ContentType = "application/json; charset-utf-8";
+                    f.succcess = function (response) {
+                        alert("Success");
+                    };
+                    f.error = function (response) {
+                        alert("failed");
+                    };
+                    $.ajax(f);
+
+                    $.get('@Url.Action("Show","Home")', function (data) {
+                        $('#test').replaceWith(data);
+                    });
+                });
+            });
+</script>
+

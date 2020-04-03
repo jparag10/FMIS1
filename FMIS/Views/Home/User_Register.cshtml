@@ -1,5 +1,6 @@
 ﻿@model FMIS.Models.User
 @{
+    Layout = null;
     ViewBag.Title = "User_Register";
 }
 @Styles.Render("~/Content/css")
@@ -12,80 +13,81 @@
     <title>Register Form</title>
 </head>
 <body>
-
-    <div class="panel panel-success" style="width:40%">
-        <div class="panel-heading text-center"> <h4> User Register </h4> </div>
-        <div class="panel-body">
-            @using (Html.BeginForm())
-            {
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                if (ViewBag.triedOnce == "yes")
+    <center>
+        <div class="panel panel-success" style="width:40%">
+            <div class="panel-heading text-center"> <h4> User Register </h4> </div>
+            <div class="panel-body">
+                @using (Html.BeginForm())
                 {
-                    <h4> Username already Exists, please try another username. </h4>
-                }
-                <div class="form-group">
-                    <label>Name :</label>
-                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label>Email :</label>
-                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <label>Password :</label>
-                    @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    if (ViewBag.triedOnce == "yes")
+                    {
+                        <h4> Username already Exists, please try another username. </h4>
+                    }
+                    <div class="form-group">
+                        <label>Name :</label>
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Email :</label>
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Password :</label>
+                        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
 
-                </div>
-                <div class="form-group">
-                    <label>Gender :</label>
-                    @Html.DropDownListFor(x => x.Gender, new[]{
-           new SelectListItem() {Text = "Male", Value = bool.TrueString},
-           new SelectListItem() {Text = "Female", Value = bool.FalseString}
-           }, "Choose Gender", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Gender :</label>
+                        @Html.DropDownListFor(x => x.Gender, new[]{
+               new SelectListItem() {Text = "Male", Value = bool.TrueString},
+               new SelectListItem() {Text = "Female", Value = bool.FalseString}
+               }, "Choose Gender", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
 
-                </div>
+                    </div>
 
-                <div class="form-group">
-                    <label>Contact No. :</label>
-                    @Html.TextBoxFor(x => x.ContactNo, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.ContactNo, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <label>Contact No. :</label>
+                        @Html.TextBoxFor(x => x.ContactNo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ContactNo, "", new { @class = "text-danger" })
 
-                </div>
-                <div class="form-group">
-                    <label>Height(cms) :</label>
-                    @Html.TextBoxFor(x => x.Height, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Height, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Height(cms) :</label>
+                        @Html.TextBoxFor(x => x.Height, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Height, "", new { @class = "text-danger" })
 
-                </div>
-                <div class="form-group">
-                    <label>Weight(Kg) :</label>
-                    @Html.TextBoxFor(x => x.Weight, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Weight, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Weight(Kg) :</label>
+                        @Html.TextBoxFor(x => x.Weight, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Weight, "", new { @class = "text-danger" })
 
-                </div>
-                <div class="form-group">
-                    <label>Age :</label>
-                    @Html.TextBoxFor(x => x.Age, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(m => m.Age, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Age :</label>
+                        @Html.TextBoxFor(x => x.Age, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Age, "", new { @class = "text-danger" })
 
-                </div>
-                <div class="text-center">
-                    <button class="btn btn-success" type="submit" value="Submit" onsubmit="submitForm()">Register</button>
-                    <script>
-                        function submitForm() {
-                            if (confirm('Are you sure to submit form')) {
-                                var frm = document.getElementsByTagName("form");
-                                frm[0].submit();
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-success" type="submit" value="Submit" onsubmit="submitForm()">Register</button>
+                        <script>
+                            function submitForm() {
+                                if (confirm('Are you sure to submit form')) {
+                                    var frm = document.getElementsByTagName("form");
+                                    frm[0].submit();
+                                }
                             }
-                        }
-                    </script>
-                </div>
-            }
+                        </script>
+                    </div>
+                }
+            </div>
         </div>
-    </div>
+    </center>
 </body>
 </html>
