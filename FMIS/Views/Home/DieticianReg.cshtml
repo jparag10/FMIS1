@@ -4,69 +4,77 @@
     
     ViewBag.Title = "DieticianReg";
 }
-   
-        <div class="panel panel-success" style="width:40%">
-            <div class="panel-heading text-center"> <h4> Dietician Register</h4> </div>
-            <div class="panel-body">
-                <form name="f1" method="post" enctype="multipart/form-data">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @if (ViewBag.triedOnce == "yes")
-                    {
-                        <h4> Username already Exists, please try another username. </h4>
-                    }
-                    <div class="form-group">
-                        <label>Name :</label>
-                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-                    </div>
-                    <div class="form-group">
-                        <label>Email :</label><br />
-                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
-                        <span class="text-danger">@ViewBag.Email</span>
-
-                    </div>
-                    <div class="form-group">
-                        <label>Password :</label>
-                        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-
-                    </div>
-
-                    <div class="form-group">
-                        <label>Contact No. :</label>
-                        @Html.TextBoxFor(x => x.Contact, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Contact, "", new { @class = "text-danger" })
-
-                    </div>
-                    <div class="form-group">
-                        <label>Location :</label>
-                        @Html.TextBoxFor(x => x.Location, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-danger" })
-
-                    </div>
-                    <div class="form-group">
-                        <label>Experience :</label>
-                        @Html.TextBoxFor(x => x.Experience, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Experience, "", new { @class = "text-danger" })
-
-                    </div>
-                    <div class="form-group">
-
-                        <input type="file" name="postedFile" id="postedFile" />
-                    </div>
-
-                    <input type="submit" class="btn btn-success" name="upload" value="Submit" />
-                </form>
-                <script>
-                    function submitForm() {
-                        if (confirm('Are you sure to submit form')) {
-                            var frm = document.getElementsByTagName("form");
-                            frm[0].submit();
+    </head>
+    <body style="background-image: url('../../Images/apple_drops_black_background_118624_1366x768.jpg');">
+        <center>
+            <div class="panel panel-danger" style="width:40%; margin:auto;">
+                <div class="panel-heading text-center"> <h4> Dietician Register</h4> </div>
+                <div class="panel-body">
+                    <form name="f1" method="post" enctype="multipart/form-data">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @if (ViewBag.triedOnce == "yes")
+                        {
+                            <h4> Username already Exists, please try another username. </h4>
                         }
-                    }
-                </script>
+                        <div class="form-group">
+                            <label>Name :</label>
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
 
+                        </div>
+                        <div class="form-group">
+                            <label>Email :</label><br />
+                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                            <span class="text-danger">@ViewBag.Email</span>
+
+                        </div>
+                        <div class="form-group">
+                            <label>Password :</label>
+                            @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Contact No. :</label>
+                            @Html.TextBoxFor(x => x.Contact, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Contact, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            <label>Location :</label>
+                            @Html.TextBoxFor(x => x.Location, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            <label>Experience :</label>
+                            @Html.TextBoxFor(x => x.Experience, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Experience, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="postedFile" id="postedFile" />
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </div>
+
+                        <input type="submit" class="btn btn-success" name="upload" value="Submit" />
+                    </form>
+                    <script>
+                        function submitForm() {
+                            if (confirm('Are you sure to submit form')) {
+                                var frm = document.getElementsByTagName("form");
+                                frm[0].submit();
+                            }
+                        }
+                    </script>
+
+                </div>
             </div>
-        </div>
- 
+        </center>
+    </body>

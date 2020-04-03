@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="refresh" name="viewport" content="width=device-width" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <title>Register Form</title>
     <style>
@@ -12,16 +12,11 @@
             float: left;
         }
     </style>
-    <script>
-        $("#cleartext").click(function () {
-            $(this).closest('form').find("input[type=text],textarea").val("");
-        });
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
     @if (ViewBag.email != null)
     {
-        <h2> Hello, @ViewBag.email </h2>
     }
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -39,18 +34,14 @@
                         <label>Name :</label> @ViewBag.Name
                         <br />
                     </div>
-                    <div class="form-group">
-                        <label>Experience :</label>  @ViewBag.Experience
-                        <br />
-                    </div>
                     @ViewBag.AlreadyExist
-                    <div class="form-group">
+                    <div class="form-group" style="margin-left:50px;">
                         <h3> Disease : </h3>
 
                         @try
                         {
                             @Html.DropDownListFor(
-                                x => x.Disease, ViewBag.dis as SelectList, "Select Type", new { id = "dd", @class = "form-control" })
+             x => x.Disease, ViewBag.dis as SelectList, new { id = "dd", @class = "form-control" })
 
                         }
                         catch { }
@@ -71,35 +62,45 @@
                             }
                         }
                     </script>
-                    <div id="da" class="form-control" style="height:auto; display:none; padding:10px; border:none">
-                        <input class="form-control" type="text" id="adddisease" name="adddisease" placeholder="Add Disease To List" />
-                        <button style="margin-top:10px" class="btn btn-success" type="submit">Add Disease</button>
+                    <div id="devi">
+                        <div id="da" class="form-control" style="height:auto; display:none; padding:10px; border:none">
+                            <input class="form-control" type="text" id="adddisease" name="adddisease" placeholder="Add Disease To List" />
+                            <button style="margin-top:10px" class="btn btn-success" type="submit">Add Disease</button>
 
-                    </div>
-                    <br />
-                    <div class="form-group">
-                        <label>What To Eat : </label>
-                        @*@Html.TextArea("WhatToEat", new { @class = "form-control" })*@
-                        @Html.TextAreaFor(m => m.WhatToEat, new { @class = "form-control" })
-
-                        <br /> 
-                    </div>
-                    <div class="form-group">
-                        <label>What To Avoid : </label>
-                        @*@Html.TextArea("NotToEat", new { @class = "form-control" })*@
-                        @Html.TextAreaFor(m => m.NotToEat, new { @class = "form-control" })
+                        </div>
                         <br />
+
+                        <div class="form-group">
+                            <label>What To Eat : </label>
+                            @*@Html.TextArea("WhatToEat", new { @class = "form-control" })*@
+                            @Html.TextAreaFor(m => m.WhatToEat, new { @class = "form-control" })
+
+                            <br />
+                        </div>
+                        <div class="form-group">
+                            <label>What To Avoid : </label>
+                            @*@Html.TextArea("NotToEat", new { @class = "form-control" })*@
+                            @Html.TextAreaFor(m => m.NotToEat, new { @class = "form-control" })
+                            <br />
+                        </div>
                     </div>
+
 
                     <button name="Add" class="btn btn-success" type="submit" value="Add">Add</button>
-                    <button name="Search" class="btn btn-success" type="submit" value="Search">Search</button>
+                    <button name="Search" id="yep" class="btn btn-success" type="submit" value="Search">Search</button>
                     <button name="Update" class="btn btn-success" type="submit" value="Update">Update</button>
                     <button name="Delete" class="btn btn-success" type="submit" value="Delete">Delete</button>
                     <button id="cleartext" name="Reset" class="btn btn-success" type="reset" value="Reset">Reset</button>
                     <br /> <br />
+                    <div id="divo">
+                        @ViewBag.whatte <br />
+                        @ViewBag.notte<br />
+                    </div><br />
 
-                    @ViewBag.whatte <br />
-                    @ViewBag.notte
+
+
+
+
                 }
             </div>
         </div>
@@ -107,4 +108,15 @@
 
 </body>
 </html>
+<script>
+    $("document").ready(function () {
+        $("divo").hide();
+        $("yep").submit(function (e) {        
+            $("divo").show();
+            $("devi").hide();
+            e.PreventDefault();
+        });
+       
+    });
+</script>
 

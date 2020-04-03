@@ -133,13 +133,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003311358389_dde_first.cs" />
-    <Compile Include="Migrations\202003311358389_dde_first.designer.cs">
-      <DependentUpon>202003311358389_dde_first.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004031115376_userpage.cs" />
-    <Compile Include="Migrations\202004031115376_userpage.designer.cs">
-      <DependentUpon>202004031115376_userpage.cs</DependentUpon>
+    <Compile Include="Migrations\202004031334088_fms.cs" />
+    <Compile Include="Migrations\202004031334088_fms.designer.cs">
+      <DependentUpon>202004031334088_fms.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dietician.cs" />
@@ -162,6 +158,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\17816.jpg" />
+    <Content Include="Images\apple_drops_black_background_118624_1366x768.jpg" />
+    <Content Include="Images\Logincover.jpg" />
     <Content Include="Images\slider1.jpg" />
     <Content Include="Images\slider2.jpg" />
     <Content Include="Images\slider3.jpg" />
@@ -220,11 +219,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003311358389_dde_first.resx">
-      <DependentUpon>202003311358389_dde_first.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004031115376_userpage.resx">
-      <DependentUpon>202004031115376_userpage.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004031334088_fms.resx">
+      <DependentUpon>202004031334088_fms.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

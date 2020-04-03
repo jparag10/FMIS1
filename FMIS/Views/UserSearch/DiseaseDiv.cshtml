@@ -23,13 +23,13 @@
                     var radioValue = $("input[name='diseases']:checked").val();
                     var data = radioValue;
                     var f = {};
-                    f.url = '@Url.Action("Test","Home")',
+                    f.url = '@Url.Action("Test", "UserSearch")',
                     f.type = "POST",
                         f.dataType = "html";
                     f.data = { "value": data };
                     f.async = false;
                     f.ContentType = "application/json; charset-utf-8";
-                    f.succcess = function (response) {
+                    f.success = function (response) {
                         alert("Success");
                     };
                     f.error = function (response) {
@@ -37,7 +37,7 @@
                     };
                     $.ajax(f);
 
-                    $.get('@Url.Action("Show","Home")', function (data) {
+                    $.get('@Url.Action("Show", "UserSearch")', function (data) {
                         $('#test').replaceWith(data);
                     });
                 });

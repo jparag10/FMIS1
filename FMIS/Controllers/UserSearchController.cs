@@ -42,7 +42,7 @@ namespace FMIS.Controllers
             string constr = ConfigurationManager.ConnectionStrings["Medicaldbcontext"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                string query = "SELECT Disease, WhatToEat, NotToEat,Name From DieticianDataEntries inner join Dieticians on Dieticians.did = DieticianDataEntries.Dietician_did where Disease ='" + disease + "'";
+                string query = "SELECT Disease, WhatToEat, NotToEat,Name From DieticianDataEntries inner join Dieticians on Dieticians.did = DieticianDataEntries.dieticianid where Disease ='" + disease + "'";
                 using (SqlCommand cmd = new SqlCommand(query))
                 {
                     cmd.Connection = con;
