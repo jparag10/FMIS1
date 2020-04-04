@@ -36,7 +36,7 @@ namespace FMIS.Controllers
 
         public ActionResult User_Register()
         {
-            return View();
+            return View("User_Register");
         }
         [HttpPost]
         public ActionResult User_Register(User user)
@@ -66,7 +66,7 @@ namespace FMIS.Controllers
         //[HttpGet]
         public ActionResult DieticianReg()
         {
-            return View();
+            return View("DieticianReg");
         }
         [HttpPost]
         public ActionResult DieticianReg(Dietician diet, HttpPostedFileBase postedFile)
