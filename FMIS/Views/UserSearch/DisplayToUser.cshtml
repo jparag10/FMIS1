@@ -7,17 +7,18 @@
 
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<body>
-    <div style="overflow:auto;padding-top:20px;padding-left:10px;padding-right:10px;">
+<body style="background-image: url('../../Images/apple_drops_black_background_118624_1366x768.jpg');">
+    <div align="right" style="padding-right:30px;padding-top:10px;"><label style="color:white">@ViewBag.name</label></div>
+    <div style="overflow:auto;padding-top:5px;padding-left:10px;padding-right:10px;">
         <div class="float-left alert-info" style="text-align:center; border:2px solid black;height:90%;width:20%;">
 
             @{Html.RenderAction("DiseaseDiv", "UserSearch");}
         </div>
 
-        <div class="float-left" style=" overflow:auto; margin-left:25px;padding:5px;text-align:center; border:2px solid black;height:90%;width:75%;">
+        <div class="float-left" style="background-color:white; overflow:auto; margin-left:25px;padding:5px;text-align:center; border:2px solid black;height:90%;width:78%;">
 
             <div id="test">
-                <h1>Please choose a pick</h1>
+                <h1 style="margin-top:100px">Please choose a pick</h1>
             </div>
 
         </div>
