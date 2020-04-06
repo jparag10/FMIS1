@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+   
+    
+    <body>
+        <div class="form-group" style="margin-right:1000px">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Logout" class="btn btn-success pull-right " onclick="location.href='@Url.Action("Logout", "Home")'" />
+            </div>
+        </div>
+        <div style="margin-top:50px;">
+            <div class="tab-pane">
+                <ul class="nav nav-tabs-justified">
+                    <li class="active"><a data-toggle="tab" href="#dietician" style="color:black;">Dieticians</a></li>
+                    <li><a data-toggle="tab" href="#user" style="color:black;">Users</a></li>
+                    <li><a data-toggle="tab" href="#dataentry" style="color:black;">DataEntries</a></li>
+                </ul>
+            </div>
+            <div class="tab-content alert-info form-group" style="margin-top:30px;">
+                <div id="dietician" class="tab-pane fade in active">@Html.Action("DieticianView")</div>
+                <div id="user" class="tab-pane fade in">@Html.Action("UserView")</div>
+                <div id="dataentry" class="tab-pane fade in">@Html.Action("DataentryView")</div>
+            </div>
+
+        </div>
+
+    </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

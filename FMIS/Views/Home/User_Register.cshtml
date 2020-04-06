@@ -1,6 +1,5 @@
 ﻿@model FMIS.Models.User
 @{
-    Layout = null;
     ViewBag.Title = "User_Register";
 }
 @Styles.Render("~/Content/css")
@@ -11,10 +10,19 @@
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/Styles.css" rel="stylesheet" />
     <title>Register Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        .transparent {
+            zoom: 1;
+            filter: alpha(opacity=100);
+            opacity: 0.9;
+        }
+    </style>
 </head>
-<body>
+<body style="background-image: url('../../Images/apple_drops_black_background_118624_1366x768.jpg');">
     <center>
-        <div class="panel panel-success" style="width:40%">
+        <div class="panel panel-danger transparent" style="width:40%; margin:auto;">
             <div class="panel-heading text-center"> <h4> User Register </h4> </div>
             <div class="panel-body">
                 @using (Html.BeginForm())

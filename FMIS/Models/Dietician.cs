@@ -37,6 +37,7 @@ namespace FMIS.Models
         [RegularExpression(@"^[0-8]{0,1}[0-9]{0,1}", ErrorMessage = "Please enter valid experience")]
         public int Experience { get; set; }
 
+        public bool? Status { get; set; }
         public string filepath { get; set; }
     }
 }

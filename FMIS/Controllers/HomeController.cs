@@ -36,7 +36,7 @@ namespace FMIS.Controllers
 
         public ActionResult User_Register()
         {
-            return View();
+            return View("User_Register");
         }
         [HttpPost]
         public ActionResult User_Register(User user)
@@ -66,7 +66,7 @@ namespace FMIS.Controllers
         //[HttpGet]
         public ActionResult DieticianReg()
         {
-            return View();
+            return View("DieticianReg");
         }
         [HttpPost]
         public ActionResult DieticianReg(Dietician diet, HttpPostedFileBase postedFile)
@@ -112,14 +112,20 @@ namespace FMIS.Controllers
 
         public ActionResult Login()
         {
-            if (Session["email"] != null)
+            try
             {
-                return RedirectToAction("Search", "Home", new { email = Session["email"].ToString() });
+                if (Session["email"] != null)
+                {
+                    return RedirectToAction("Search", "Home", new { email = Session["email"].ToString() });
+                }
+                else
+                {
+                    return View("Login");
+                }
             }
-            else
-            {
-                return View();
-            }
+            catch { }
+                    return View("Login");
+
         }
 
         [HttpPost]
@@ -152,6 +158,22 @@ namespace FMIS.Controllers
                         Session["email"] = login.Email;
                         //return RedirectToAction("DieticianProfile", "Home", new { email = login.Email });
                         return RedirectToAction("DieticianDataEntry", "DieticianDataEntry", new { email = login.Email });
+                    }
+                    else
+                    {
+                        ViewBag.triedOnce = "yes";
+                        return View();
+                    }
+                }
+                else if (selectedtype == "Admin")
+                {
+                    var t = login.type;
+                    var e = login.Email;
+                    var p = login.Password;
+                    if (t == "Admin" && e == "admin@gmail.com" && p == "admin1234")
+                    {
+                        //return RedirectToAction("DieticianProfile", "Home", new { email = login.Email });
+                        return RedirectToAction("Index", "Admins");
                     }
                     else
                     {

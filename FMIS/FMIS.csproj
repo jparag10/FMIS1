@@ -127,6 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\DieticianDataEntryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserSearchController.cs" />
@@ -140,6 +141,10 @@
     <Compile Include="Migrations\202004031115376_userpage.cs" />
     <Compile Include="Migrations\202004031115376_userpage.designer.cs">
       <DependentUpon>202004031115376_userpage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004040738079_admin.cs" />
+    <Compile Include="Migrations\202004040738079_admin.designer.cs">
+      <DependentUpon>202004040738079_admin.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dietician.cs" />
@@ -194,7 +199,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\DieticianDataEntry\DieticianDataEntry.cshtml" />
-    <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\User_Register.cshtml" />
     <Content Include="Views\Home\DieticianReg.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
@@ -202,6 +206,16 @@
     <Content Include="Views\UserSearch\DisplayToUser.cshtml" />
     <Content Include="Views\UserSearch\DiseaseDiv.cshtml" />
     <Content Include="Views\UserSearch\Show.cshtml" />
+    <Content Include="Views\Admins\DataentryView.cshtml" />
+    <Content Include="Views\Admins\Deletedataentry.cshtml" />
+    <Content Include="Views\Admins\Deletedietician.cshtml" />
+    <Content Include="Views\Admins\Deleteuser.cshtml" />
+    <Content Include="Views\Admins\DieticianView.cshtml" />
+    <Content Include="Views\Admins\Editdietician.cshtml" />
+    <Content Include="Views\Admins\Edituser.cshtml" />
+    <Content Include="Views\Admins\Index.cshtml" />
+    <Content Include="Views\Admins\UserView.cshtml" />
+    <Content Include="Views\temp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -225,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004031115376_userpage.resx">
       <DependentUpon>202004031115376_userpage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004040738079_admin.resx">
+      <DependentUpon>202004040738079_admin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

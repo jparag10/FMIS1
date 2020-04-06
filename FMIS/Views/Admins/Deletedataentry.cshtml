@@ -1,0 +1,59 @@
+﻿@model FMIS.Models.DieticianDataEntry
+
+@{
+    ViewBag.Title = "Deletedataentry";
+}
+
+    <body class="form-group alert-warning center-block" style="position:center;">
+        <h2>Deletedataentry</h2>
+        <h3>Are you sure you want to delete this?</h3>
+
+        <div>
+            <h4>DieticianDataEntry</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Disease)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Disease)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.WhatToEat)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.WhatToEat)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.NotToEat)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NotToEat)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.dieticianid)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.dieticianid)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" />
+
+                </div>
+            }
+        </div>
+    </body>

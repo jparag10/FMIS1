@@ -9,7 +9,7 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/Styles.css" rel="stylesheet" />
-    <title>Login Form</title>
+    <title>Register Form</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body style="background-image: url('../../Images/apple_drops_black_background_118624_1366x768.jpg'); background-size: cover; background-repeat:no-repeat">
@@ -27,9 +27,8 @@
                        new SelectListItem() {Text = "Admin", Value = "Admin"},
                        new SelectListItem() {Text = "User", Value = "User"},
                        new SelectListItem() {Text = "Dietician", Value = "Dietician"}
-                       }, "Choose Type", new { @class = "form-control" })
+               }, "Choose Type", new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.type, "", new { @class = "text-danger" })
-
                     </div>
                     <label>Email :</label>
                     <div class="input-group">
@@ -68,5 +67,3 @@
 </html>
 
 
- @*new SelectListItem() {Text = "User", Value = bool.TrueString},
-       new SelectListItem() {Text = "Dietician", Value = bool.FalseString}*@

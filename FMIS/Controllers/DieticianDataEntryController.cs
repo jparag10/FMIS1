@@ -86,10 +86,11 @@ namespace FMIS.Controllers
                         cmd.Connection = con;
                         using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                         {
-                            if (adddisease != null)
+                            if (adddisease != null && adddisease != "")
                             {
                                 dr.Add(adddisease);
                             }
+                            sda.Update(ds);
                             sda.Fill(ds);
                             foreach (DataRow row in ds.Rows)
                             {
@@ -107,13 +108,12 @@ namespace FMIS.Controllers
                         var alreadyExist = db.DieticianDataEntries.SingleOrDefault(x => x.Disease == dde.Disease && x.dieticianid == dieticianid);
                         if (alreadyExist == null)
                         {
-                            //dde.Dieticians.Add(diet);
                             dde.dieticianid = dieticianid;
                             db.DieticianDataEntries.Add(dde);
                             db.SaveChanges();
                             
-                            ViewBag.Success = "Inserted";                          
-                            return View();
+                            ViewBag.Success = "Inserted";
+                            return RedirectToAction("DieticianDataEntry", "DieticianDataEntry");
                         }
                         else
                         {
@@ -191,7 +191,7 @@ namespace FMIS.Controllers
                         db.DieticianDataEntries.Remove(dieticianDataEntry);
                         db.SaveChanges();
                         ViewBag.Success = "Deleted";
-                        return View();
+                        return RedirectToAction("DieticianDataEntry", "DieticianDataEntry");
                     }
                     else
                     {

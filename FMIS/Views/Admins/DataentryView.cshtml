@@ -1,0 +1,51 @@
+﻿@model IEnumerable<FMIS.Models.DieticianDataEntry>
+
+@{
+    Layout = null;
+    ViewBag.Title = "DataentryView";
+}
+
+
+
+    <div class="form-group table-bordered">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Disease)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.WhatToEat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NotToEat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.dieticianid)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Disease)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.WhatToEat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NotToEat)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dieticianid)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.ddeID }) |
+                        @Html.ActionLink("Delete", "Deletedataentry", new { id = item.ddeID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>

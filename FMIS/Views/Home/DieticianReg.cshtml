@@ -4,11 +4,16 @@
     
     ViewBag.Title = "DieticianReg";
 }
-   
-        <div class="panel panel-success" style="width:40%">
-            <div class="panel-heading text-center"> <h4> Dietician Register</h4> </div>
-            <div class="panel-body">
-                <form name="f1" method="post" enctype="multipart/form-data">
+ <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  
+ </head>
+<body style="background-image: url('../../Images/apple_drops_black_background_118624_1366x768.jpg');">      
+    <center>
+
+        <div class="panel panel-success" style="width:40%; margin:auto;">
+        <div class="panel-heading text-center"> <h4> Dietician Register</h4> </div>
+        <div class="panel-body">
+         <form name="f1" method="post" enctype="multipart/form-data">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @if (ViewBag.triedOnce == "yes")
                     {
@@ -58,7 +63,7 @@
 
                     <input type="submit" class="btn btn-success" name="upload" value="Submit" />
                 </form>
-                <script>
+         <script>
                     function submitForm() {
                         if (confirm('Are you sure to submit form')) {
                             var frm = document.getElementsByTagName("form");
@@ -67,6 +72,7 @@
                     }
                 </script>
 
-            </div>
+         </div>
         </div>
- 
+</center>
+</body>
